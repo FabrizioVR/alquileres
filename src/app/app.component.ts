@@ -1,19 +1,14 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
-
-import { RegistrarComponent } from './registrar/registrar.component';
-import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
-import { MainComponent } from './main/main.component';
-
+import { RouterModule } from '@angular/router';  // Agrega esta línea
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, RegistrarComponent, IniciarSesionComponent, MainComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true,
+  imports: [RouterModule]  // Agrega esta línea
 })
 export class AppComponent {
-  title = 'alquileres';
+  title = 'Aplicación de Alquileres';
 }

@@ -1,0 +1,12 @@
+<!-- src/app/listado-viviendas/listado-viviendas.component.html -->
+<div class="viviendas-container">
+  <h1>Listado de Viviendas</h1>
+  <div class="viviendas-grid">
+    <div class="vivienda-card" *ngFor="let vivienda of viviendas" [ngClass]="getEstadoClase(vivienda.estado)">
+      <img src="ruta/a/la/imagen.jpg" alt="Imagen de {{ vivienda.nombre }}" class="vivienda-image">
+      <h2 class="vivienda-title">{{ vivienda.nombre }}</h2>
+      <p>Estado: <span [ngClass]="getEstadoClase(vivienda.estado)">{{ vivienda.estado }}</span></p>
+      <button class="details-button" (click)="verDetalles(vivienda.id)">Ver Detalles</button>
+    </div>
+  </div>
+</div>
