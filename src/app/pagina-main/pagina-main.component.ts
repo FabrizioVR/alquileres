@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-pagina-main',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './pagina-main.component.html',
-  styleUrl: './pagina-main.component.css'
+  styleUrl: './pagina-main.component.css',
 })
 export class PaginaMainComponent {
   constructor(private router: Router) {}
@@ -26,5 +25,4 @@ export class PaginaMainComponent {
   publicar() {
     this.router.navigate(['/publicar']);
   }
-  
 }

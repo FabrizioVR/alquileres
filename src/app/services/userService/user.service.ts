@@ -30,6 +30,10 @@ export class UserService {
     return this.http.post<User>(`${this.apiUrl}/`, user);
   }
 
+  update(userId: number, user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/${userId}`, user);
+  }
+
   delete(userId: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.apiUrl}/${userId}`);
   }
