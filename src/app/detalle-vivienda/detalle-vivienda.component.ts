@@ -32,7 +32,7 @@ export class DetalleViviendaComponent implements OnInit {
 
   // Método para regresar a la lista de viviendas
   regresar() {
-    this.router.navigate(['']); // Cambia esto si tu ruta es diferente
+    this.router.navigate(['/listado-viviendas']); // Cambia esto si tu ruta es diferente
   }
 }
 

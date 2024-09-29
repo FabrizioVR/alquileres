@@ -1,0 +1,92 @@
+.publish-property-container {
+  width: 50%;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+}
+
+.publish-property-container h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #007BFF; /* Azul para destacar el título */
+  margin-bottom: 20px;
+}
+
+.publish-property-container div {
+  margin-bottom: 20px;
+}
+
+.publish-property-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.publish-property-container input,
+.publish-property-container textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.publish-property-container input:focus,
+.publish-property-container textarea:focus {
+  border-color: #007BFF; /* Azul para resaltar el campo activo */
+  outline: none;
+}
+
+.publish-property-container input[type="file"] {
+  padding: 5px;
+  font-size: 14px;
+}
+
+/* Botón de Publicar */
+.publish-property-container .submit-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #007BFF; /* Color azul para el botón */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.publish-property-container .submit-button:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+}
+
+/* Estilo para el contenedor del botón de regreso */
+.boton-regresar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Botón de Regresar */
+.regresar-button {
+  padding: 12px 20px;
+  background-color: #6c757d; /* Color gris */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.regresar-button:hover {
+  background-color: #5a6268; /* Gris más oscuro al hacer hover */
+}

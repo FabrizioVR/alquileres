@@ -1,0 +1,48 @@
+<div class="publish-property-container">
+  <h2>Publicar Propiedad</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Título de la Propiedad:</label>
+      <input type="text" id="title" [(ngModel)]="property.title" name="title" required />
+    </div>
+
+    <div>
+      <label for="description">Descripción:</label>
+      <textarea id="description" [(ngModel)]="property.description" name="description" required></textarea>
+    </div>
+
+    <div>
+      <label for="price">Precio (en $):</label>
+      <div style="display: flex; align-items: center;">
+        <span>$</span>
+        <input type="number" id="price" [(ngModel)]="property.price" name="price" required style="margin-left: 5px;" />
+      </div>
+    </div>
+
+    <div>
+      <label for="servicios">Servicios (separados por comas):</label>
+      <input type="text" id="servicios" [(ngModel)]="property.services" name="services" required placeholder="Ej: Wifi, Piscina, TV, etc." />
+    </div>
+
+    <div>
+      <label for="telefono">Teléfono de contacto:</label>
+      <input type="tel" id="telefono" [(ngModel)]="property.phone" name="phone" required placeholder="Número de teléfono" />
+    </div>
+
+    <div>
+      <label for="qrImage">Enlace del Código QR (opcional):</label>
+      <input type="text" id="qrImage" [(ngModel)]="property.qrImage" name="qrImage" placeholder="Enlace de la imagen QR" />
+    </div>
+
+    <div>
+      <label for="images">Fotos de la Propiedad:</label>
+      <input type="file" id="images" (change)="onFileSelected($event)" multiple />
+    </div>
+
+    <button type="submit" class="submit-button">Publicar Propiedad</button>
+
+    <div class="boton-regresar-container">
+      <button (click)="regresar_publicarAmain()" class="regresar-button">Regresar a Listado de Viviendas</button>
+    </div>
+  </form>
+</div>

@@ -51,4 +51,9 @@ export class ListadoViviendasComponent {
         return '';
     }
   }
+
+  regresar_listadoAmain() {
+    this.router.navigate(['/pagina-main']); // Cambia esto si tu ruta es diferente
+  }
+
 }
