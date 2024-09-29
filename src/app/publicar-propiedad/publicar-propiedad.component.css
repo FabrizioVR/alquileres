@@ -1,92 +1,69 @@
-.publish-property-container {
-  width: 50%;
-  margin: auto;
-  padding: 30px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-  font-family: 'Arial', sans-serif;
+.container {
+  max-width: 600px; /* Ancho máximo para el contenedor */
+  margin: auto; /* Centrar el contenedor horizontalmente */
+  padding: 30px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #f9f9f9; /* Fondo claro */
+  font-family: 'Arial', sans-serif; /* Fuente legible */
 }
 
-.publish-property-container h2 {
-  text-align: center;
-  font-size: 24px;
-  color: #007BFF; /* Azul para destacar el título */
-  margin-bottom: 20px;
+h2 {
+  color: #007BFF; /* Color azul para el título */
+  margin-bottom: 20px; /* Espaciado inferior */
 }
 
-.publish-property-container div {
-  margin-bottom: 20px;
+.form-group {
+  margin-bottom: 20px; /* Espaciado entre grupos de formulario */
 }
 
-.publish-property-container label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #333;
+label {
+  font-weight: bold; /* Texto en negrita para las etiquetas */
+  color: #333; /* Color del texto de las etiquetas */
 }
 
-.publish-property-container input,
-.publish-property-container textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
+input.form-control,
+textarea.form-control,
+select.form-control {
+  padding: 12px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: border-color 0.3s ease; /* Transición suave para el borde */
 }
 
-.publish-property-container input:focus,
-.publish-property-container textarea:focus {
-  border-color: #007BFF; /* Azul para resaltar el campo activo */
-  outline: none;
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-control:focus {
+  border-color: #007BFF; /* Color azul al enfocar */
+  outline: none; /* Quitar el contorno */
 }
 
-.publish-property-container input[type="file"] {
-  padding: 5px;
-  font-size: 14px;
+.btn {
+  padding: 12px 20px; /* Espaciado interno del botón */
+  border-radius: 8px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  transition: background-color 0.3s ease; /* Transición suave para el fondo */
 }
 
-/* Botón de Publicar */
-.publish-property-container .submit-button {
-  width: 100%;
-  padding: 15px;
-  background-color: #007BFF; /* Color azul para el botón */
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.btn-primary {
+  background-color: #007BFF; /* Color azul para el botón de publicar */
+  border: none; /* Sin borde */
+  color: white; /* Texto blanco */
 }
 
-.publish-property-container .submit-button:hover {
-  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+.btn-primary:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
 }
 
-/* Estilo para el contenedor del botón de regreso */
-.boton-regresar-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+.btn-secondary {
+  background-color: #6c757d; /* Color gris para el botón de cancelar */
+  border: none; /* Sin borde */
+  color: white; /* Texto blanco */
 }
 
-/* Botón de Regresar */
-.regresar-button {
-  padding: 12px 20px;
-  background-color: #6c757d; /* Color gris */
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.regresar-button:hover {
-  background-color: #5a6268; /* Gris más oscuro al hacer hover */
+.btn-secondary:hover {
+  background-color: #5a6268; /* Color más oscuro al pasar el mouse */
 }
