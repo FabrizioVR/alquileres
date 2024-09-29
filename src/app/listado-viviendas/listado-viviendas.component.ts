@@ -1,14 +1,9 @@
 // src/app/listado-viviendas/listado-viviendas.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-// Definición de la interfaz Vivienda
-interface Vivienda {
-  id: number;
-  nombre: string;
-  estado: string;  // Agregar el atributo `estado`
-}
+import { PropertyService } from '../services/propertyService/property.service';
+import { Property } from '../services/propertyService/property.model';
 
 @Component({
   selector: 'app-listado-viviendas',
@@ -17,28 +12,32 @@ interface Vivienda {
   standalone: true,
   imports: [CommonModule]
 })
-export class ListadoViviendasComponent {
-  // Lista de viviendas con id, nombre y estado
-  viviendas: Vivienda[] = [
-    { id: 1, nombre: 'Vivienda 1', estado: 'Disponible' },
-    { id: 2, nombre: 'Vivienda 2', estado: 'Ocupada' },
-    { id: 3, nombre: 'Vivienda 3', estado: 'En Mantenimiento' },
-    { id: 4, nombre: 'Vivienda 4', estado: 'Disponible' },
-    { id: 5, nombre: 'Vivienda 5', estado: 'Disponible' },
-    { id: 6, nombre: 'Vivienda 6', estado: 'Ocupada' },
-    { id: 7, nombre: 'Vivienda 7', estado: 'En Mantenimiento' },
-    { id: 8, nombre: 'Vivienda 8', estado: 'Disponible' }
-    
-  ];
 
-  constructor(private router: Router) {}
+export class ListadoViviendasComponent implements OnInit {
+  // Lista de propiedades
+  propiedades: Property[] = []; // Cambia el nombre a 'propiedades' para mayor claridad
 
-  // Método para navegar a los detalles de la vivienda seleccionada
+  constructor(private router: Router, private propertyService: PropertyService) {}
+
+  ngOnInit() {
+    this.loadPropiedades(); // Cambia el nombre del método para que coincida
+  }
+
+  // Método para cargar las propiedades desde el backend
+  loadPropiedades() {
+    this.propertyService.getAll().subscribe(data => {
+      this.propiedades = data;
+    }, error => {
+      console.error('Error fetching properties:', error);
+    });
+  }
+
+  // Método para navegar a los detalles de la propiedad seleccionada
   verDetalles(id: number) {
     this.router.navigate(['/detalle', id]);
   }
 
-  // Método para obtener la clase CSS según el estado de la vivienda
+  // Método para obtener la clase CSS según el estado de la propiedad
   getEstadoClase(estado: string): string {
     switch (estado) {
       case 'Disponible':
@@ -55,5 +54,4 @@ export class ListadoViviendasComponent {
   regresar_listadoAmain() {
     this.router.navigate(['/pagina-main']); // Cambia esto si tu ruta es diferente
   }
-
 }
