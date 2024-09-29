@@ -1,10 +1,10 @@
 export interface User {
-  userId: number;
+  userId?: number;
   name: string;
   lastName: string;
   dni: string;
   phone: string;
   direction: string;
   password: string;
-  rol: string;  // Se puede ajustar esto
+  rol: string;  // Se puede mejorar esto
 }

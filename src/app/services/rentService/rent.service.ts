@@ -16,7 +16,7 @@ export class RentService {
   }
 
   save(rent: Rent): Observable<Rent> {
-    return this.http.post<Rent>(this.apiUrl, rent);
+    return this.http.post<Rent>(`${this.apiUrl}/`, rent);
   }
 
   delete(rentId: number): Observable<boolean> {

@@ -16,7 +16,7 @@ export class PropertyService {
   }
 
   save(property: Property): Observable<Property> {
-    return this.http.post<Property>(this.apiUrl, property);
+    return this.http.post<Property>(`${this.apiUrl}/`, property);
   }
 
   delete(propertyId: number): Observable<boolean> {
