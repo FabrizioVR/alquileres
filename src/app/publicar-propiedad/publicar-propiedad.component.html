@@ -1,6 +1,6 @@
 <div class="publicar-propiedad-container">
   <h1>Publicar Propiedad</h1>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit($event)">
     <label for="nTitle">Título:</label>
     <input type="text" id="nTitle" [(ngModel)]="property.nTitle" name="nTitle" required>
 
@@ -11,7 +11,7 @@
     <input type="text" id="direction" [(ngModel)]="property.direction" name="direction" required>
 
     <label for="availability">Disponibilidad:</label>
-    <select id="availability" [(ngModel)]="property.availability" name="availability" required>
+    <select id="availability" [(ngModel)]="property.availability" name="availability">
       <option value="Disponible">Disponible</option>
       <option value="No disponible">No disponible</option>
     </select>

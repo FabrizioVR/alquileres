@@ -1,6 +1,6 @@
 export interface Property {
-  propertyId: number;
-  userId: number;
+  propertyId?: number;
+  userId?: number;
   nTitle: string;
   description: string;
   direction: string;
