@@ -13,13 +13,11 @@ import { User } from '../services/userService/user.model';
   standalone: true,
   imports: [FormsModule, CommonModule, RouterOutlet],
   templateUrl: './publicar-propiedad.component.html',
-  styleUrls: ['./publicar-propiedad.component.css']
+  styleUrls: ['./publicar-propiedad.component.css'],
 })
-
 export class PublicarPropiedadComponent implements OnInit {
   property: Property = {
-    propertyId: 0,
-    userId: 0,
+    userId: 1,
     nTitle: '',
     description: '',
     direction: '',
@@ -63,19 +61,10 @@ export class PublicarPropiedadComponent implements OnInit {
   }
 
   // Manejar el envío del formulario de publicación de la propiedad
-  onSubmit() {
-    if (
-      this.property.nTitle &&
-      this.property.description &&
-      this.property.direction &&  // Verificar la dirección
-      this.property.capacity &&
-      this.property.type &&  // Verificar el tipo
-      this.property.userId > 0
-    ) {
+  onSubmit(event: any) {
+    if (event.target.checkValidity()) {
       const propertyData: Property = {
         ...this.property,
-        // No necesitamos agregar propertyId porque debería ser manejado por el servidor
-        propertyId: undefined // O establecer a 0 si es necesario
       };
 
       // Realizar la llamada al servicio
@@ -85,7 +74,9 @@ export class PublicarPropiedadComponent implements OnInit {
           alert('¡Propiedad publicada exitosamente!');
 
           // Aquí puedes manejar la carga de imágenes si es necesario
-          this.uploadImages(data.propertyId);
+          if (data.propertyId) {
+            this.uploadImages(data.propertyId);
+          }
 
           this.router.navigate(['/pagina-main']);
         },
@@ -103,7 +94,7 @@ export class PublicarPropiedadComponent implements OnInit {
   uploadImages(propertyId: number) {
     if (this.images.length > 0) {
       const formData = new FormData();
-      this.images.forEach(image => {
+      this.images.forEach((image) => {
         formData.append('images', image); // Asegúrate de que este nombre coincida con lo que espera el backend
       });
       // Llamar a otro servicio o método aquí para subir las imágenes usando propertyId

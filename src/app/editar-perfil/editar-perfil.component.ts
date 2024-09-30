@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 
 export class EditarPerfilComponent {
-  // Usuario que se va a editar
   usuario = {
     nombre: '',
     correo: '',
