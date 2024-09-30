@@ -1,69 +1,74 @@
-.container {
+.publicar-propiedad-container {
   max-width: 600px; /* Ancho máximo para el contenedor */
-  margin: auto; /* Centrar el contenedor horizontalmente */
-  padding: 30px; /* Espaciado interno */
-  border: 1px solid #ccc; /* Borde gris claro */
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: #f9f9f9; /* Fondo claro */
-  font-family: 'Arial', sans-serif; /* Fuente legible */
+  margin: 20px auto; /* Centrar en la pantalla */
+  padding: 20px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde del contenedor */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: #fff; /* Fondo blanco */
 }
 
-h2 {
-  color: #007BFF; /* Color azul para el título */
-  margin-bottom: 20px; /* Espaciado inferior */
+h1 {
+  text-align: center; /* Centrar el título */
+  color: #333; /* Color del texto */
+}
+
+.form-publicar {
+  display: flex; /* Flexbox para layout */
+  flex-direction: column; /* Colocar elementos en columna */
 }
 
 .form-group {
-  margin-bottom: 20px; /* Espaciado entre grupos de formulario */
+  margin-bottom: 15px; /* Espaciado entre grupos de formulario */
 }
 
 label {
-  font-weight: bold; /* Texto en negrita para las etiquetas */
-  color: #333; /* Color del texto de las etiquetas */
+  margin-bottom: 5px; /* Espaciado inferior para las etiquetas */
+  font-weight: bold; /* Negrita para las etiquetas */
 }
 
-input.form-control,
-textarea.form-control,
-select.form-control {
-  padding: 12px; /* Espaciado interno */
-  border: 1px solid #ccc; /* Borde gris claro */
-  border-radius: 8px; /* Bordes redondeados */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: border-color 0.3s ease; /* Transición suave para el borde */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%; /* Ancho completo */
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde del campo */
+  border-radius: 4px; /* Bordes redondeados */
+  box-sizing: border-box; /* Incluir el padding en el ancho total */
 }
 
-input.form-control:focus,
-textarea.form-control:focus,
-select.form-control:focus {
-  border-color: #007BFF; /* Color azul al enfocar */
-  outline: none; /* Quitar el contorno */
+input[type="file"] {
+  padding: 5px; /* Espaciado interno para el campo de archivo */
 }
 
-.btn {
-  padding: 12px 20px; /* Espaciado interno del botón */
-  border-radius: 8px; /* Bordes redondeados */
-  font-size: 16px; /* Tamaño de fuente */
-  font-weight: bold; /* Negrita */
-  transition: background-color 0.3s ease; /* Transición suave para el fondo */
+.button-container {
+  display: flex; /* Flexbox para botones */
+  justify-content: space-between; /* Espacio entre botones */
 }
 
-.btn-primary {
-  background-color: #007BFF; /* Color azul para el botón de publicar */
+.btn-submit,
+.btn-regresar {
+  padding: 10px 15px; /* Espaciado interno */
   border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar el mouse */
+}
+
+.btn-submit {
+  background-color: #28a745; /* Color verde */
   color: white; /* Texto blanco */
 }
 
-.btn-primary:hover {
-  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-}
-
-.btn-secondary {
-  background-color: #6c757d; /* Color gris para el botón de cancelar */
-  border: none; /* Sin borde */
+.btn-regresar {
+  background-color: #dc3545; /* Color rojo */
   color: white; /* Texto blanco */
 }
 
-.btn-secondary:hover {
-  background-color: #5a6268; /* Color más oscuro al pasar el mouse */
+.btn-submit:hover {
+  background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+}
+
+.btn-regresar:hover {
+  background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
 }

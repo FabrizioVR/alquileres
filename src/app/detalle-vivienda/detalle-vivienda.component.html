@@ -1,45 +1,15 @@
-<!-- src/app/detalle-vivienda/detalle-vivienda.component.html -->
 <div class="detalle-container">
   <h1>Detalles de la Vivienda</h1>
-  <p>ID: {{ vivienda.id }}</p>
-  <h2>{{ vivienda.nombre }}</h2>
-  <p>{{ vivienda.descripcion }}</p>
-  <p>Precio: ${{ vivienda.precio }}</p>
-  <p>Servicios: {{ vivienda.servicios.join(', ') }}</p>
-  <p>Teléfono: {{ vivienda.telefono }}</p>
-  <img [src]="vivienda.qrImage" alt="Código QR" class="qr-imagen">
+  <p>ID: {{ vivienda.propertyId }}</p>
+  <h2>{{ vivienda.nTitle }}</h2>
+  <p>{{ vivienda.description }}</p>
+  <p>Estado: {{ vivienda.availability }}</p>
+  <p>Capacidad: {{ vivienda.capacity }} personas</p>
+  <p>Tipo: {{ vivienda.type }}</p>
+  <p>Dirección: {{ vivienda.direction }}</p>
+  <p>Teléfono: {{ vivienda.state }}</p> <!-- Cambia esto si el campo no es correcto -->
   
-  <!-- Botón para regresar a la lista de viviendas -->
   <div class="boton-regresar-container">
     <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
   </div>
 </div>
-
-<!--
-
-<div *ngIf="vivienda" class="detalle-container">
-  <h1>Detalles de la Vivienda</h1>
-  <p>ID: {{ vivienda.id }}</p>
-  <h2>{{ vivienda.nombre }}</h2>
-  <p>{{ vivienda.descripcion }}</p>
-  <p>Precio: ${{ vivienda.precio }}</p>
-  <p>Servicios: {{ vivienda.servicios.join(', ') }}</p>
-  <p>Teléfono: {{ vivienda.telefono }}</p>
-  <img [src]="vivienda.qrImage" alt="Código QR de {{ vivienda.nombre }}" class="qr-imagen">
-
-//Botón para regresar a la lista de viviendas
-
-  <div class="boton-regresar-container">
-    <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
-  </div>
-</div>
-
-//Muestra un mensaje de error si no se encuentra la vivienda
-<div *ngIf="!vivienda" class="error-container">
-  <h2>Vivienda no encontrada</h2>
-  <p>Lo sentimos, no pudimos encontrar los detalles de esta vivienda.</p>
-  <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
-</div>
-
-
--->
