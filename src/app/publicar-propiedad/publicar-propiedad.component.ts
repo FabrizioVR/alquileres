@@ -42,7 +42,7 @@ export class PublicarPropiedadComponent implements OnInit {
       this.userService.getById(loggedUserId).subscribe(
         (user: User) => {
           this.user = user;
-          this.property.userId = user.userId || 0; // Asignar el ID del usuario a la propiedad
+          this.property.userId = user.userId || 1;
         },
         (error: any) => {
           console.error('Error al obtener el usuario:', error);
@@ -52,7 +52,6 @@ export class PublicarPropiedadComponent implements OnInit {
     }
   }
 
-  // Capturar los archivos seleccionados por el usuario
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
@@ -60,20 +59,17 @@ export class PublicarPropiedadComponent implements OnInit {
     }
   }
 
-  // Manejar el envío del formulario de publicación de la propiedad
   onSubmit(event: any) {
     if (event.target.checkValidity()) {
       const propertyData: Property = {
         ...this.property,
       };
 
-      // Realizar la llamada al servicio
       this.propertyService.save(propertyData).subscribe(
         (data: Property) => {
           console.log('Propiedad publicada:', data);
           alert('¡Propiedad publicada exitosamente!');
 
-          // Aquí puedes manejar la carga de imágenes si es necesario
           if (data.propertyId) {
             this.uploadImages(data.propertyId);
           }
@@ -90,16 +86,12 @@ export class PublicarPropiedadComponent implements OnInit {
     }
   }
 
-  // Método para cargar las imágenes después de guardar la propiedad
   uploadImages(propertyId: number) {
     if (this.images.length > 0) {
       const formData = new FormData();
       this.images.forEach((image) => {
-        formData.append('images', image); // Asegúrate de que este nombre coincida con lo que espera el backend
+        formData.append('images', image);
       });
-      // Llamar a otro servicio o método aquí para subir las imágenes usando propertyId
-      // Ejemplo:
-      // this.imageService.uploadImages(propertyId, formData).subscribe(...);
     }
   }
 
