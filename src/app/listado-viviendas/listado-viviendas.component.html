@@ -7,7 +7,7 @@
       <p>Estado: <span [ngClass]="getEstadoClase(propiedad.availability)">{{ propiedad.availability }}</span></p>
       <p>Capacidad: {{ propiedad.capacity }} personas</p>
       <p>Tipo: {{ propiedad.type }}</p>
-      <button class="details-button" (click)="verDetalles(propiedad.propertyId)">Ver Detalles</button>
+      <button class="details-button" *ngIf="propiedad.propertyId !== undefined" (click)="verDetalles(propiedad.propertyId)">Ver Detalles</button>
     </div>
   </div>
 
