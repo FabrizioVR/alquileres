@@ -16,8 +16,8 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}/all`);
   }
 
-  login(phone: string, password: string): Observable<boolean> {
-    return this.http.get<boolean>(
+  login(phone: string, password: string): Observable<User> {
+    return this.http.get<User>(
       `${this.apiUrl}/login?telefono=${phone}&contrasena=${password}`
     );
   }

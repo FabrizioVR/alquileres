@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, Router } from '@angular/router';
 import { UserService } from '../services/userService/user.service';
+import { User } from '../services/userService/user.model';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -25,8 +26,9 @@ export class IniciarSesionComponent {
 
   login() {
     this.userService.login(this.phone, this.password).subscribe(
-      (response: boolean) => {
+      (response: User) => {
         if (response) {
+          localStorage.setItem('currentUser', JSON.stringify(response));
           this.router.navigate(['pagina-main']);
         } else {
           this.errorMessage = 'Teléfono o contraseña incorrectos.';

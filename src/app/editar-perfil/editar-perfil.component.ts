@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgIf, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/userService/user.service'; // Asegúrate de que la ruta es correcta
-import { User } from '../services/userService/user.model'; // Asegúrate de que esta ruta es correcta
+import { UserService } from '../services/userService/user.service';
+import { User } from '../services/userService/user.model';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -23,15 +23,39 @@ export class EditarPerfilComponent implements OnInit {
     rol: 'CLIENTE',
   };
 
+  errorMessage: string = '';
+
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
-    const usuario = JSON.parse(localStorage.getItem('usuario')!);
-    console.log(usuario);
-    const userId = 1; // No es el ID que se debería poner
-    this.userService.getById(userId).subscribe((user) => {
-      this.usuario = user;
-    });
+    // Intentar obtener el usuario del localStorage
+    const storedUser = localStorage.getItem('currentUser');
+
+    if (storedUser) {
+      try {
+        const usuario = JSON.parse(storedUser);
+
+        // Verificar si el usuario tiene un ID válido
+        if (usuario && usuario.userId) {
+          this.userService.getById(usuario.userId).subscribe(
+            (user) => {
+              this.usuario = user;
+            },
+            (error) => {
+              console.error('Error al obtener el usuario:', error);
+              this.errorMessage = 'No se pudo cargar la información del usuario.';
+            }
+          );
+        } else {
+          this.errorMessage = 'El ID del usuario no es válido.';
+        }
+      } catch (error) {
+        console.error('Error al parsear el usuario desde localStorage:', error);
+        this.errorMessage = 'Error al cargar el usuario almacenado.';
+      }
+    } else {
+      this.errorMessage = 'No hay un usuario almacenado.';
+    }
   }
 
   volver() {
@@ -39,16 +63,35 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   guardarCambios() {
-    const userId = 1; //no debería ser este ID
-    this.userService.update(userId, this.usuario).subscribe({
-      next: (updatedUser) => {
-        alert('Perfil actualizado exitosamente');
-        this.router.navigate(['/pagina-main']);
-      },
-      error: (err) => {
-        console.error('Error al actualizar el perfil:', err);
-        alert('Error al actualizar el perfil, por favor intenta nuevamente');
-      },
-    });
+    const storedUser = localStorage.getItem('currentUser');
+
+    if (storedUser) {
+      try {
+        const usuario = JSON.parse(storedUser);
+
+        // Verificar si el usuario tiene un ID válido
+        if (usuario && usuario.userId) {
+          this.userService.update(usuario.userId, this.usuario).subscribe({
+            next: (updatedUser) => {
+              alert('Perfil actualizado exitosamente');
+              // Actualizar el usuario almacenado en localStorage
+              localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+              this.router.navigate(['/pagina-main']);
+            },
+            error: (err) => {
+              console.error('Error al actualizar el perfil:', err);
+              alert('Error al actualizar el perfil, por favor intenta nuevamente');
+            },
+          });
+        } else {
+          this.errorMessage = 'El ID del usuario no es válido.';
+        }
+      } catch (error) {
+        console.error('Error al parsear el usuario desde localStorage:', error);
+        this.errorMessage = 'Error al guardar los cambios.';
+      }
+    } else {
+      this.errorMessage = 'No se pudo cargar la información del usuario.';
+    }
   }
 }
