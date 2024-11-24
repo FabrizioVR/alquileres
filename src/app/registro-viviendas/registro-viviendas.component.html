@@ -1,1 +1,43 @@
-<p>registro-viviendas works!</p>
+<div class="container">
+  <h2>Propiedades Publicadas:</h2>
+
+  <div *ngIf="propiedades.length === 0" class="message">
+    Aún no tienes propiedades registradas.
+  </div>
+
+  <div *ngIf="propiedades.length > 0">
+    <div class="propiedad-list">
+      <!-- Lista de propiedades -->
+      <div *ngFor="let propiedad of propiedadesVisibles" class="propiedad-card">
+        <div class="propiedad-info">
+          <div class="propiedad-img">
+            <img [src]="propiedad.imagen" alt="Imagen de la Propiedad" />
+          </div>
+          <div class="propiedad-details">
+            <h3>{{ propiedad.titulo }}</h3>
+            <p>{{ propiedad.ubicacion }}</p>
+            <p>S/. {{ propiedad.precio }}</p>
+            <p>Estado: <strong>{{ propiedad.estado }}</strong></p>
+          </div>
+        </div>
+        <div class="propiedad-actions">
+          <button (click)="editarDetalles(propiedad.id)">Editar Detalles</button>
+          <button *ngIf="propiedad.estado === 'Reservada'" (click)="confirmarAlquiler(propiedad.id)">
+            Confirmar Alquiler
+          </button>
+          <button *ngIf="propiedad.estado === 'Reservada'" (click)="anularReservacion(propiedad.id)">
+            Anular Reservación
+          </button>
+          <button *ngIf="propiedad.estado === 'Alquilada'" (click)="finalizarAlquiler(propiedad.id)">
+            Finalizar Alquiler
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón para cargar más propiedades -->
+    <div class="pagination" *ngIf="propiedades.length > propiedadesVisibles.length">
+      <button (click)="mostrarMas()">Mostrar más</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+}
+
+.propiedad-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.propiedad-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.propiedad-info {
+  display: flex;
+  gap: 20px;
+}
+
+.propiedad-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.propiedad-details {
+  text-align: left;
+}
+
+.propiedad-details h3 {
+  font-size: 1.2rem;
+  color: #007BFF;
+  margin-bottom: 5px;
+}
+
+.propiedad-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.propiedad-actions button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.propiedad-actions button:nth-child(1) {
+  background-color: #007BFF;
+  color: white;
+}
+
+.propiedad-actions button:nth-child(2) {
+  background-color: #28a745;
+  color: white;
+}
+
+.propiedad-actions button:nth-child(3) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.propiedad-actions button:hover {
+  opacity: 0.9;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:hover {
+  background-color: #007BFF;
+  color: white;
+}

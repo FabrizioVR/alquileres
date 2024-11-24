@@ -1,1 +1,35 @@
-<p>historial works!</p>
+<div class="container">
+  <h2>Historial de Casas Alquiladas</h2>
+
+  <div class="alquiler-list">
+    <!-- Tarjetas de alquiler -->
+    <div *ngFor="let alquiler of alquileresVisibles" class="alquiler-card">
+      <div class="alquiler-details">
+        <div class="alquiler-img">
+          <img [src]="alquiler.foto" alt="Propiedad" />
+        </div>
+        <div class="alquiler-info">
+          <h3>{{ alquiler.titulo }}</h3>
+          <p>{{ alquiler.ubicacion }}</p>
+          <p>S/. {{ alquiler.precio }}</p>
+        </div>
+      </div>
+      <div class="alquiler-date">
+        {{ alquiler.fechaInicio | date: 'dd/MM/yyyy' }}
+      </div>
+      <button class="ver-comprobante" (click)="verComprobante(alquiler)">
+        Ver Comprobante
+      </button>
+    </div>
+  </div>
+
+  <!-- Paginación -->
+  <div class="pagination" *ngIf="alquileres.length > alquileresVisibles.length">
+    <button (click)="mostrarMas()">Mostrar más</button>
+  </div>
+
+  <!-- Botón Regresar -->
+  <div class="boton-regresar-container">
+    <button (click)="regresar_listadoAmain()" class="regresar-button">Regresar</button>
+  </div>
+</div>
