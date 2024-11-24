@@ -1,42 +1,65 @@
-  import { CommonModule } from '@angular/common';
-  import { Component } from '@angular/core';
-  import { RouterOutlet } from '@angular/router';
-  import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { UserService } from '../services/userService/user.service';
 
+@Component({
+  selector: 'app-pagina-main',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
+  templateUrl: './pagina-main.component.html',
+  styleUrls: ['./pagina-main.component.css'],
+})
+export class PaginaMainComponent implements OnInit {
+  usuarioAutenticado: boolean = false;
 
-  @Component({
-    selector: 'app-pagina-main',
-    standalone: true,
-    imports: [CommonModule, RouterOutlet],
-    templateUrl: './pagina-main.component.html',
-    styleUrl: './pagina-main.component.css'
-  })
-  export class PaginaMainComponent {
-    constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
-    // Método para navegar a la lista de viviendas
-    alquilar() {
-      this.router.navigate(['/listado-viviendas']);
-    }
+  ngOnInit(): void {
+    this.userService.isAuthenticated().subscribe((estado) => {
+      this.usuarioAutenticado = estado;
+    });
+  }
 
-    editarPerfil() {
-      this.router.navigate(['/editar-perfil']);
-    }
+  // Métodos existentes para navegación
+  alquilar() {
+    this.router.navigate(['/listado-viviendas']);
+  }
 
-    iniciarSesion() {
-      this.router.navigate (['/iniciar-sesion']);
-    }
+  editarPerfil() {
+    this.router.navigate(['/editar-perfil']);
+  }
 
-    publicar() {
+  iniciarSesion() {
+    this.router.navigate(['/iniciar-sesion']);
+  }
+
+  publicar() {
+    if (this.usuarioAutenticado) {
       this.router.navigate(['/publicar']);
+    } else {
+      this.router.navigate(['/iniciar-sesion']);
     }
+  }
 
-    historial() {
+  historial() {
+    if (this.usuarioAutenticado) {
       this.router.navigate(['/historial']);
+    } else {
+      this.router.navigate(['/iniciar-sesion']);
     }
+  }
 
-    registroViviendas() {
+  registroViviendas() {
+    if (this.usuarioAutenticado) {
       this.router.navigate(['/registro-viviendas']);
+    } else {
+      this.router.navigate(['/iniciar-sesion']);
     }
+  }
 
+  cerrarSesion(): void {
+    this.userService.logout();
+    this.router.navigate(['/iniciar-sesion']);
+  }
 }

@@ -56,5 +56,9 @@ export class RegistroViviendasComponent implements OnInit {
   anularReservacion(propiedadId: number): void {
     alert(`Reservación anulada para la propiedad con ID: ${propiedadId}`);
   }
+
+  irAPaginaMain() {
+    this.router.navigate(['/pagina-main']);
+  }
 }
 

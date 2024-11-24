@@ -2,58 +2,52 @@
   <div class="header-container">
     <h1>TravelNest</h1>
     <div class="header-buttons">
-      <button (click)="editarPerfil()">Editar perfil</button>
-      <button (click)="iniciarSesion()">Cerrar Sesión</button>
+      <!-- Mostrar 'Editar perfil' y 'Cerrar sesión' solo si el usuario está autenticado -->
+      <button *ngIf="usuarioAutenticado" (click)="editarPerfil()">Editar perfil</button>
+      <button *ngIf="usuarioAutenticado" (click)="cerrarSesion()">Cerrar Sesión</button>
+      <!-- Mostrar 'Iniciar sesión' si el usuario no está autenticado -->
+      <button *ngIf="!usuarioAutenticado" (click)="iniciarSesion()">Iniciar Sesión</button>
     </div>
   </div>
 </header>
-  <div class = "container">
+
+<div class="container">
+  <h2>Tenemos Una Gran Variedad De Propiedades en Alquiler</h2>
+  <h3>Encuentra La Mejor Propiedad Según Tus Necesidades</h3>
   
-      <h2>Tenemos Una Gran Variedad De Propiedades en Alquiler</h2>
-  
-      <h3>Encuentra La Mejor Propiedad Segun Tus Necesidades</h3>
-      
-      <h3></h3>
-      <div class="image-gallery">
+  <div class="image-gallery">
+    <div class="image-item">
+      <img src="https://soyarquitectura.mx/wp-content/uploads/2021/09/post-casas-de-lujo.jpeg" alt="Buscas Alquilar" />
+      <button (click)="alquilar()">Alquilar</button>
+      <h4>Descubre todas nuestras opciones de alquiler</h4>
+    </div>
 
-        <div class="image-item">
-          <img src="https://soyarquitectura.mx/wp-content/uploads/2021/09/post-casas-de-lujo.jpeg" alt="Buscas Alquilar" />
-          <button (click)="alquilar()">Alquilar</button>
-          <h4>Descubre todas nuestras opciones de alquiler</h4>
-        </div>
-
-        <div class="image-item">
-          <img src="https://content.arquitecturaydiseno.es/medio/2022/08/29/casa-blanca-en-polonia-salon_a75b4aaa_1280x794.jpg" alt="Buscas Publicar" />
-          <button (click)="publicar()">Publicar</button>
-          <h4>Publica tu casa en minutos y recibe ofertas</h4>
-        </div>
-
-      </div>
-
-      <div class="image-gallery">
-         
-        <div class="image-item">
-          <img src="https://media.istockphoto.com/id/1026205392/photo/beautiful-luxury-home-exterior-at-twilight.jpg?s=612x612&w=0&k=20&c=HOCqYY0noIVxnp5uQf1MJJEVpsH_d4WtVQ6-OwVoeDo=" alt="Historial" />
-          <button (click)="historial()">Ver Historial</button>
-          <h4>Ver Historial de propiedades publicadas</h4>
-        </div>
-
-        <div class="image-item">
-          <img src="https://img.lovepik.com/free-png/20211216/lovepik-notebook-png-image_401706111_wh1200.png" alt="Registro de Viviendas" />
-          <button (click)="registroViviendas()">Registro</button>
-          <h4>Ver registro de viviendas</h4>
-        </div>
-  
-
-      </div>
-      
+    <div class="image-item">
+      <img src="https://content.arquitecturaydiseno.es/medio/2022/08/29/casa-blanca-en-polonia-salon_a75b4aaa_1280x794.jpg" alt="Buscas Publicar" />
+      <button (click)="publicar()">Publicar</button>
+      <h4>Publica tu casa en minutos y recibe ofertas</h4>
+    </div>
   </div>
-  
-  <footer>
-    <h3></h3>
-    <nav>
-      <ul>
-      </ul>
-    </nav>
-    <p>&copy; 2024 TravelNest. Todos los derechos reservados.</p>
-  </footer>
+
+  <div class="image-gallery">
+    <div class="image-item">
+      <img src="https://media.istockphoto.com/id/1026205392/photo/beautiful-luxury-home-exterior-at-twilight.jpg?s=612x612&w=0&k=20&c=HOCqYY0noIVxnp5uQf1MJJEVpsH_d4WtVQ6-OwVoeDo=" alt="Historial" />
+      <button (click)="historial()">Ver Historial</button>
+      <h4>Ver Historial de propiedades publicadas</h4>
+    </div>
+
+    <div class="image-item">
+      <img src="https://img.lovepik.com/free-png/20211216/lovepik-notebook-png-image_401706111_wh1200.png" alt="Registro de Viviendas" />
+      <button (click)="registroViviendas()">Registro</button>
+      <h4>Ver registro de viviendas</h4>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <h3></h3>
+  <nav>
+    <ul></ul>
+  </nav>
+  <p>&copy; 2024 TravelNest. Todos los derechos reservados.</p>
+</footer>

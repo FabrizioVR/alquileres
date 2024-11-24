@@ -28,7 +28,9 @@ export class IniciarSesionComponent {
     this.userService.login(this.phone, this.password).subscribe(
       (response: User) => {
         if (response) {
+          // Guardamos la información del usuario en localStorage
           localStorage.setItem('currentUser', JSON.stringify(response));
+          // Redirigimos a la página principal
           this.router.navigate(['pagina-main']);
         } else {
           this.errorMessage = 'Teléfono o contraseña incorrectos.';
@@ -39,5 +41,10 @@ export class IniciarSesionComponent {
         console.error(error);
       }
     );
+  }
+
+  // Método para verificar si el usuario está autenticado
+  isAuthenticated(): boolean {
+    return localStorage.getItem('currentUser') !== null;
   }
 }
