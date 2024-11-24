@@ -1,15 +1,26 @@
 <div class="detalle-container">
-  <h1>Detalles de la Vivienda</h1>
+  <h1>Alquilar Propiedad</h1>
   <p>ID: {{ vivienda.propertyId }}</p>
   <h2>{{ vivienda.nTitle }}</h2>
-  <p>{{ vivienda.description }}</p>
-  <p>Estado: {{ vivienda.availability }}</p>
-  <p>Capacidad: {{ vivienda.capacity }} personas</p>
-  <p>Tipo: {{ vivienda.type }}</p>
   <p>Dirección: {{ vivienda.direction }}</p>
-  <p>Teléfono: {{ usuario.phone }}</p> <!-- Cambia esto si el campo no es correcto -->
+  <p>Ciudad: {{ vivienda.city }}</p>
+  <p>Disponibilidad: {{ vivienda.availability }}</p>
+  <p>Descripcion: {{ vivienda.description }}</p>
+  <p>Tipo: {{ vivienda.type }}</p>
+  <p>Características Adicionales: {{ vivienda.features }}</p>
+  <p>Numero de Habitaciones: {{ vivienda.rooms }}</p>
+  <p>Capacidad: {{ vivienda.capacity }} personas</p>
+  <p>Teléfono: {{ usuario.phone }}</p>
+  <p>Precio: {{ vivienda.cost }}</p>
 
-  <div class="boton-regresar-container">
+  <div>
+    <label for="comprobante-pago">Subir comprobante de pago:</label>
+    <input type="file" id="comprobante-pago" (change)="onFileSelected($event)" accept="image/*">
+    <p *ngIf="comprobanteNombre">Archivo seleccionado: {{ comprobanteNombre }}</p>
+  </div>
+
+  <div class="botones-container">
     <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
+    <button (click)="realizarAlquiler()" class="realizar-button">Realizar Alquiler</button>
   </div>
 </div>

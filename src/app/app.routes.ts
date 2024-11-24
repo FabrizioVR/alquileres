@@ -7,13 +7,18 @@ import { PublicarPropiedadComponent } from './publicar-propiedad/publicar-propie
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { HistorialComponent } from './historial/historial.component';
+import { RegistroViviendasComponent } from './registro-viviendas/registro-viviendas.component';
 
 export const routes: Routes = [
-  {path: '', component: IniciarSesionComponent},
-  {path: 'registrar', component: RegistrarComponent},
-  {path: 'pagina-main', component: PaginaMainComponent},
+  { path: '', component: PaginaMainComponent }, // Cambiado a PaginaMainComponent
+  { path: 'registrar', component: RegistrarComponent },
+  { path: 'pagina-main', component: PaginaMainComponent },
   { path: 'listado-viviendas', component: ListadoViviendasComponent },
   { path: 'publicar', component: PublicarPropiedadComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
-  { path: 'detalle/:id', component: DetalleViviendaComponent }
+  { path: 'iniciar-sesion', component: IniciarSesionComponent},
+  { path: 'detalle/:id', component: DetalleViviendaComponent },
+  { path: 'historial', component: HistorialComponent },
+  { path: 'registro-viviendas', component: RegistroViviendasComponent },
 ];

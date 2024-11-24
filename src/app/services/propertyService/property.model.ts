@@ -8,4 +8,8 @@ export interface Property {
   type: string;
   capacity: number;
   state: string;
+  features: string;
+  cost?: number;
+  city: string;
+  rooms: string;
 }

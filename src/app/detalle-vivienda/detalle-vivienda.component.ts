@@ -15,6 +15,8 @@ export class DetalleViviendaComponent implements OnInit {
   vivienda!: Property;
   usuario!: User;
   errorMessage: string = '';
+  comprobanteNombre: string = ''; // Nombre del archivo del comprobante seleccionado
+  comprobanteArchivo: File | null = null; // Archivo del comprobante
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +63,28 @@ export class DetalleViviendaComponent implements OnInit {
         this.errorMessage = 'Error al cargar la información del usuario.';
       }
     );
+  }
+
+  // Método para manejar la selección de un archivo
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.comprobanteArchivo = input.files[0];
+      this.comprobanteNombre = this.comprobanteArchivo.name;
+
+      // Simulación de la subida del archivo al servidor
+      const formData = new FormData();
+      formData.append('comprobante', this.comprobanteArchivo);
+
+      console.log('Subiendo comprobante:', this.comprobanteArchivo.name);
+      alert(`El comprobante "${this.comprobanteArchivo.name}" se ha subido correctamente.`);
+    }
+  }
+
+  realizarAlquiler(): void {
+    alert('Solicitud de Alquiler Enviada Correctamente');
+    alert('Su vivienda estara en estado de Reservado mientras se espera la respuesta del propietario');
+    // Aquí puedes implementar la lógica para realizar el alquiler.
   }
 
   regresar(): void {

@@ -23,8 +23,20 @@ export class PaginaMainComponent {
     this.router.navigate(['/editar-perfil']);
   }
 
+  iniciarSesion() {
+    this.router.navigate (['/iniciar-sesion']);
+  }
+
   publicar() {
     this.router.navigate(['/publicar']);
+  }
+
+  historial() {
+    this.router.navigate(['/historial']);
+  }
+
+  registroViviendas() {
+    this.router.navigate(['/registro-viviendas']);
   }
   
 }

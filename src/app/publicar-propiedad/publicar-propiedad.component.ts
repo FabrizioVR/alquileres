@@ -12,8 +12,8 @@ import { User } from '../services/userService/user.model';
   selector: 'app-publicar-propiedad',
   templateUrl: './publicar-propiedad.component.html',
   styleUrls: ['./publicar-propiedad.component.css'],
-  standalone: true, // Asegúrate de que el componente sea standalone
-  imports: [FormsModule, CommonModule, RouterOutlet] // Agrega FormsModule aquí
+  standalone: true,
+  imports: [FormsModule, CommonModule, RouterOutlet],
 })
 export class PublicarPropiedadComponent implements OnInit {
   property: Property = {
@@ -25,10 +25,22 @@ export class PublicarPropiedadComponent implements OnInit {
     type: '',
     capacity: 1,
     state: 'Activa',
+    features: '', // Nueva propiedad para características adicionales
+    cost: 0,
+    city: '',
+    rooms: '',
   };
 
   images: File[] = []; // Almacena las imágenes seleccionadas
   user: User | undefined;
+
+  // Nueva lista de ciudades y propiedad seleccionada
+  cities: string[] = ['Abancay', 'Arequipa', 'Ayacucho', 'Callao', 'Cajamarca', 'Cerro de Pasco', 'Chachapoyas', 'Chiclayo', 'Chimbote', 'Cusco', 'Huancavelica', 'Huancayo', 'Huanuco', 'Iquitos', 'Juliaca', 'Lima', 'Moquegua', 'Tacna', 'Tarapoto', 'Trujillo', 'Tumbes', 'Piura', 'Pt. Maldonado', 'Pucallpa'];
+  selectedCity: string = '';
+
+  // Array de números de habitaciones
+  rooms: number[] = [1, 2, 3, 4, 5];
+  selectedRooms: number = 1;
 
   constructor(
     private propertyService: PropertyService,
@@ -65,6 +77,8 @@ export class PublicarPropiedadComponent implements OnInit {
     if (event.target.checkValidity()) {
       const propertyData: Property = {
         ...this.property,
+        direction: this.selectedCity, // Asignar la ciudad seleccionada como dirección
+        features: this.property.features, // Asegurarse de que las características adicionales estén enviadas
       };
 
       // Realizar la llamada al servicio
@@ -95,11 +109,9 @@ export class PublicarPropiedadComponent implements OnInit {
     if (this.images.length > 0) {
       const formData = new FormData();
       this.images.forEach((image) => {
-        formData.append('images', image); // Asegúrate de que este nombre coincida con lo que espera el backend
+        formData.append('images', image);
       });
       // Llamar a otro servicio o método aquí para subir las imágenes usando propertyId
-      // Ejemplo:
-      // this.imageService.uploadImages(propertyId, formData).subscribe(...);
     }
   }
 

@@ -8,29 +8,21 @@ header {
 .header-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espaciado entre logo y título */
-}
-
-.logo {
-  width: 100px; /* Ajusta el tamaño del logo */
+  justify-content: space-between; /* Alinea el logo/título a la izquierda y botones a la derecha */
 }
 
 h1 {
   color: #007BFF; /* Azul para el título */
+  margin: 0;
 }
 
-/* Estilos para la navegación */
-nav ul {
-  list-style: none;
-  padding: 0;
+/* Contenedor para los botones */
+.header-buttons {
   display: flex;
-  align-items: center; /* Alinea los botones y enlaces verticalmente */
+  gap: 15px; /* Espaciado entre los botones */
 }
 
-nav ul li {
-  margin-right: 15px; /* Espaciado entre los elementos de la lista */
-}
-
+/* Estilo general de los botones */
 button {
   padding: 10px 15px;
   background-color: #007BFF; /* Color azul para los botones */
