@@ -34,7 +34,7 @@ export class EditarPerfilComponent implements OnInit {
     if (storedUser) {
       this.usuario = JSON.parse(storedUser);
     } else {
-      this.errorMessage = 'No hay un usuario almacenado. Debe iniciar Sesión';
+      this.errorMessage = 'No hay un usuario almacenado. Debe iniciar sesión.';
     }
   }
 
@@ -43,6 +43,19 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   guardarCambios() {
+    // Verificar si algún campo está vacío
+    if (
+      !this.usuario.name ||
+      !this.usuario.lastName ||
+      !this.usuario.dni ||
+      !this.usuario.phone ||
+      !this.usuario.direction ||
+      !this.usuario.password
+    ) {
+      this.errorMessage = 'Error: Complete todos los campos.';
+      return;
+    }
+
     const storedUser = localStorage.getItem('currentUser');
 
     if (storedUser) {
@@ -61,7 +74,7 @@ export class EditarPerfilComponent implements OnInit {
             error: (err) => {
               console.error('Error al actualizar el perfil:', err);
               alert(
-                'Error al actualizar el perfil, por favor intenta nuevamente'
+                'Error al actualizar el perfil, por favor intenta nuevamente.'
               );
             },
           });

@@ -26,6 +26,11 @@ export class RegistrarComponent {
   }
 
   registrar() {
+    if (!this.nombre || !this.telefono || !this.contrasena || !this.confirmarContrasena) {
+      this.errorMessage = 'Error: Complete todos los campos.';
+      return;
+    }
+
     if (this.contrasena !== this.confirmarContrasena) {
       this.errorMessage = 'Las contraseñas no coinciden.';
       return;

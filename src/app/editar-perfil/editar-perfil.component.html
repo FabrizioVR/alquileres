@@ -15,6 +15,11 @@
         </div>
         <button type="submit">Guardar Cambios</button>
 
+         <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
         <div class="boton-regresar-container">
             <button (click)="volver()" class="regresar-button">Regresar</button>
         </div>

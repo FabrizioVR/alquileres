@@ -2,7 +2,7 @@
   <h2>Regístrate ahora</h2>
   <form class="registrar-form" (ngSubmit)="registrar()">
     <div class="form-group">
-      <label for="nombre">Nombre:</label>
+      <label for="nombre">Nombre de usuario:</label>
       <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre" required />
     </div>
 
@@ -24,6 +24,7 @@
     <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 
     <button type="submit" class="btn-registrar">Crear Cuenta</button>
+    
 
     <div class="boton-regresar-container">
       <button type="button" (click)="volverInicio()" class="volverInicio-button">Regresar a Inicio</button>

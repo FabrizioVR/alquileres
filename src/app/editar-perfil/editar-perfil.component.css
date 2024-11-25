@@ -91,3 +91,10 @@
     background-color: #5a6268; /* Gris más oscuro al hacer hover */
   }
   
+  .error-message {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+  }

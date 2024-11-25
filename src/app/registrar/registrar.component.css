@@ -8,7 +8,7 @@ body {
   margin: 100px auto; /* Centrado vertical y horizontal */
   padding: 20px; /* Espaciado interno */
   border-radius: 10px; /* Bordes redondeados */
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #d0d0d0; /* Fondo blanco */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil */
   border: 1px solid #eaeaea; /* Borde gris claro */
 }
@@ -56,7 +56,7 @@ input:focus {
   padding: 12px; /* Espaciado interno */
   border: none; /* Sin borde */
   border-radius: 5px; /* Bordes redondeados */
-  background-color: #28a745; /* Color de fondo verde */
+  background-color: #000000; /* Color de fondo verde */
   color: white; /* Color del texto */
   font-size: 16px; /* Tamaño de fuente */
   cursor: pointer; /* Cambiar cursor a puntero */
@@ -64,7 +64,7 @@ input:focus {
 }
 
 .btn-registrar:hover {
-  background-color: #218838; /* Color de fondo al pasar el mouse */
+  background-color: #000000; /* Color de fondo al pasar el mouse */
   transform: translateY(-2px); /* Efecto de elevación */
 }
 
@@ -89,4 +89,12 @@ input:focus {
 
 .volverInicio-button:hover {
   color: #0056b3; /* Cambiar color al pasar el mouse */
+}
+
+.error-message {
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
 }

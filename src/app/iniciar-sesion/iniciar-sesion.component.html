@@ -2,7 +2,7 @@
   <h2>Iniciar Sesión</h2>
   <form class="iniciar-sesion-form" (ngSubmit)="login()">
     <div class="form-group">
-      <label for="usuario">Usuario:</label>
+      <label for="usuario">Nombre de Usuario:</label>
       <input [(ngModel)]="userName" name="userName" type="text" id="userName" required>
     </div>
 
@@ -11,12 +11,17 @@
       <input [(ngModel)]="password" name="password" type="password" id="password" required>
     </div>
 
+    <!-- Botón para iniciar sesión -->
     <button type="submit" class="btn-iniciar-sesion">Iniciar Sesión</button>
 
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
+    <!-- Botón para ir a la página de registro -->
     <div class="boton-regresar-container">
-      <button (click)="registrar()" type="button" class="registrar-button">¿Aún no te registras? ¡Haz clic aquí!</button>
+      <button (click)="registrar()" type="button" class="registrar-button">Registrarse</button>
     </div>
   </form>
 </div>

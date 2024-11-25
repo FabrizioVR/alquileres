@@ -12,7 +12,6 @@ import { User } from '../services/userService/user.model';
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'
 })
-
 export class IniciarSesionComponent {
   userName: string = '';
   password: string = '';
@@ -25,6 +24,11 @@ export class IniciarSesionComponent {
   }
 
   login() {
+    if (!this.userName || !this.password) {
+      this.errorMessage = 'Error: Complete todos los datos';
+      return;
+    }
+
     this.userService.login(this.userName, this.password).subscribe(
       (response: User) => {
         if (response) {
