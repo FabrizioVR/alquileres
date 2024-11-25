@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../services/userService/user.service';
 import { User } from '../services/userService/user.model';
 
 @Component({
   selector: 'app-registrar',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet],
+  imports: [FormsModule, CommonModule],
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.css'],
 })
