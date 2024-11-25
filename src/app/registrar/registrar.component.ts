@@ -14,10 +14,13 @@ import { User } from '../services/userService/user.model';
 })
 export class RegistrarComponent {
   nombre: string = '';
+  apellido: string = '';
+  usuario: string = '';
   telefono: string = '';
   contrasena: string = '';
   confirmarContrasena: string = '';
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -26,29 +29,47 @@ export class RegistrarComponent {
   }
 
   registrar() {
+    this.errorMessage = ''; // Limpiar el mensaje de error previo.
+
+    if (!this.nombre || !this.apellido || !this.usuario || !this.telefono || !this.contrasena || !this.confirmarContrasena) {
+      this.errorMessage = 'Por favor, completa todos los campos.';
+      return;
+    }
+
     if (this.contrasena !== this.confirmarContrasena) {
       this.errorMessage = 'Las contraseñas no coinciden.';
       return;
     }
 
+    if (!/^\d+$/.test(this.telefono)) {
+      this.errorMessage = 'El número de teléfono debe contener solo dígitos.';
+      return;
+    }
+
     const newUser: User = {
       name: this.nombre,
+      lastName: this.apellido,
+      userName: this.usuario,
       phone: this.telefono,
       password: this.contrasena,
-      dni: '',
-      lastName: '',
-      direction: '',
-      rol: 'CLIENTE' // rol por defecto.
     };
 
-    this.userService.save(newUser).subscribe(
-      (response) => {
+    this.isLoading = true;
+
+    this.userService.save(newUser).subscribe({
+      next: () => {
+        this.isLoading = false;
         this.router.navigate(['pagina-main']);
       },
-      (error) => {
-        this.errorMessage = 'Ocurrió un error durante el registro.';
-        console.error(error);
-      }
-    );
+      error: (error) => {
+        this.isLoading = false;
+        if (error.status === 409) {
+          this.errorMessage = 'El usuario ya existe. Intenta con otro nombre.';
+        } else {
+          this.errorMessage = 'Ocurrió un error durante el registro.';
+        }
+        console.error('Error:', error);
+      },
+    });
   }
 }
