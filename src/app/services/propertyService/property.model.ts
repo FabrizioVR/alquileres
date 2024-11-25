@@ -1,15 +1,15 @@
 export interface Property {
   propertyId?: number;
   userId?: number;
-  nTitle: string;
+  title: string;
   description: string;
+  city: string;
   direction: string;
+  price: number;
   availability: string;
+  image: string;
   type: string;
   capacity: number;
-  state: string;
-  features: string;
-  cost?: number;
-  city: string;
-  rooms: string;
+  nRooms: number;
+  additioFeatures: string;
 }
