@@ -30,7 +30,7 @@ export class UserService {
   }
 
   save(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/`, user);
+    return this.http.post<User>(`${this.apiUrl}/register`, user);
   }
 
   update(userId: number, user: User): Observable<User> {

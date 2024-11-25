@@ -16,11 +16,9 @@ export class EditarPerfilComponent implements OnInit {
   usuario: User = {
     name: '',
     lastName: '',
-    dni: '',
+    userName: '',
     phone: '',
-    direction: '',
     password: '',
-    rol: 'CLIENTE',
   };
 
   errorMessage: string = '';

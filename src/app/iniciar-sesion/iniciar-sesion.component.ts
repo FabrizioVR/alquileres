@@ -25,26 +25,27 @@ export class IniciarSesionComponent {
   }
 
   login() {
+    this.errorMessage = ''; // Reiniciar el mensaje de error
+
     this.userService.login(this.userName, this.password).subscribe(
-      (response: User) => {
-        if (response) {
-          // Guardamos la información del usuario en localStorage
-          localStorage.setItem('currentUser', JSON.stringify(response));
-          // Redirigimos a la página principal
-          this.router.navigate(['pagina-main']);
+      (user: User) => {
+        if (user) {
+          // Guardar la información del usuario en el servicio y localStorage
+          this.userService.setAuthenticated(user);
+          this.router.navigate(['pagina-main']); // Redirigir a la página principal
         } else {
           this.errorMessage = 'Usuario o contraseña incorrectos.';
         }
       },
       (error) => {
-        this.errorMessage = 'Ocurrió un error al intentar iniciar sesión.';
-        console.error(error);
+        // Manejo de errores
+        if (error.status === 401) {
+          this.errorMessage = 'Usuario o contraseña incorrectos.';
+        } else {
+          this.errorMessage = 'Ocurrió un error al intentar iniciar sesión.';
+        }
+        console.error('Error al iniciar sesión:', error);
       }
     );
-  }
-
-  // Método para verificar si el usuario está autenticado
-  isAuthenticated(): boolean {
-    return localStorage.getItem('currentUser') !== null;
   }
 }
