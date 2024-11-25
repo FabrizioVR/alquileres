@@ -32,29 +32,9 @@ export class EditarPerfilComponent implements OnInit {
     const storedUser = localStorage.getItem('currentUser');
 
     if (storedUser) {
-      try {
-        const usuario = JSON.parse(storedUser);
-
-        // Verificar si el usuario tiene un ID válido
-        if (usuario && usuario.userId) {
-          this.userService.getById(usuario.userId).subscribe(
-            (user) => {
-              this.usuario = user;
-            },
-            (error) => {
-              console.error('Error al obtener el usuario:', error);
-              this.errorMessage = 'No se pudo cargar la información del usuario.';
-            }
-          );
-        } else {
-          this.errorMessage = 'El ID del usuario no es válido.';
-        }
-      } catch (error) {
-        console.error('Error al parsear el usuario desde localStorage:', error);
-        this.errorMessage = 'Error al cargar el usuario almacenado.';
-      }
+      this.usuario = JSON.parse(storedUser);
     } else {
-      this.errorMessage = 'No hay un usuario almacenado.';
+      this.errorMessage = 'No hay un usuario almacenado. Debe iniciar Sesión';
     }
   }
 
@@ -80,7 +60,9 @@ export class EditarPerfilComponent implements OnInit {
             },
             error: (err) => {
               console.error('Error al actualizar el perfil:', err);
-              alert('Error al actualizar el perfil, por favor intenta nuevamente');
+              alert(
+                'Error al actualizar el perfil, por favor intenta nuevamente'
+              );
             },
           });
         } else {

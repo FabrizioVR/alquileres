@@ -32,7 +32,7 @@ export class PublicarPropiedadComponent implements OnInit {
   };
 
   images: File[] = []; // Almacena las imágenes seleccionadas
-  user: User | undefined;
+  loggedUserId = 0;
 
   // Nueva lista de ciudades y propiedad seleccionada
   cities: string[] = ['Abancay', 'Arequipa', 'Ayacucho', 'Callao', 'Cajamarca', 'Cerro de Pasco', 'Chachapoyas', 'Chiclayo', 'Chimbote', 'Cusco', 'Huancavelica', 'Huancayo', 'Huanuco', 'Iquitos', 'Juliaca', 'Lima', 'Moquegua', 'Tacna', 'Tarapoto', 'Trujillo', 'Tumbes', 'Piura', 'Pt. Maldonado', 'Pucallpa'];
@@ -49,19 +49,7 @@ export class PublicarPropiedadComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const loggedUserId = parseInt(localStorage.getItem('userId') || '0', 10);
-    if (loggedUserId > 0) {
-      this.userService.getById(loggedUserId).subscribe(
-        (user: User) => {
-          this.user = user;
-          this.property.userId = user.userId || 0; // Asignar el ID del usuario a la propiedad
-        },
-        (error: any) => {
-          console.error('Error al obtener el usuario:', error);
-          alert('Hubo un problema al obtener la información del usuario.');
-        }
-      );
-    }
+    this.loggedUserId = parseInt(localStorage.getItem('userId') || '0', 10);
   }
 
   // Capturar los archivos seleccionados por el usuario

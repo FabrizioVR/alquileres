@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 
@@ -21,18 +21,12 @@ export class UserService {
     }
   }
 
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/all`);
-  }
+  login(username: string, password: string): Observable<any> {
+    const params = new HttpParams()
+      .set('username', username)
+      .set('password', password);
 
-  login(phone: string, password: string): Observable<User> {
-    return this.http.get<User>(
-      `${this.apiUrl}/login?telefono=${phone}&contrasena=${password}`
-    );
-  }
-
-  getById(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${userId}`);
+    return this.http.get(`${this.apiUrl}/login`, { params });
   }
 
   save(user: User): Observable<User> {
@@ -43,9 +37,9 @@ export class UserService {
     return this.http.put<User>(`${this.apiUrl}/${userId}`, user);
   }
 
-  delete(userId: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.apiUrl}/${userId}`);
-  }
+  // delete(userId: number): Observable<boolean> {
+  //   return this.http.delete<boolean>(`${this.apiUrl}/${userId}`);
+  // }
 
   isAuthenticated(): Observable<boolean> {
     return this.usuarioAutenticado.asObservable();

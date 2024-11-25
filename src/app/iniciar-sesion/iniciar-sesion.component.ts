@@ -14,7 +14,7 @@ import { User } from '../services/userService/user.model';
 })
 
 export class IniciarSesionComponent {
-  phone: string = '';
+  userName: string = '';
   password: string = '';
   errorMessage: string = '';
 
@@ -25,7 +25,7 @@ export class IniciarSesionComponent {
   }
 
   login() {
-    this.userService.login(this.phone, this.password).subscribe(
+    this.userService.login(this.userName, this.password).subscribe(
       (response: User) => {
         if (response) {
           // Guardamos la información del usuario en localStorage
@@ -33,7 +33,7 @@ export class IniciarSesionComponent {
           // Redirigimos a la página principal
           this.router.navigate(['pagina-main']);
         } else {
-          this.errorMessage = 'Teléfono o contraseña incorrectos.';
+          this.errorMessage = 'Usuario o contraseña incorrectos.';
         }
       },
       (error) => {
