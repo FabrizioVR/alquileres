@@ -18,17 +18,17 @@ import { User } from '../services/userService/user.model';
 export class PublicarPropiedadComponent implements OnInit {
   property: Property = {
     userId: 1,
-    nTitle: '',
+    title: '',
     description: '',
+    image: '',
     direction: '',
     availability: 'Disponible',
     type: '',
     capacity: 1,
-    state: 'Activa',
-    features: '', // Nueva propiedad para características adicionales
-    cost: 0,
+    additioFeatures: '', // Nueva propiedad para características adicionales
+    price: 0,
     city: '',
-    rooms: '',
+    nRooms: 0,
   };
 
   images: File[] = []; // Almacena las imágenes seleccionadas
@@ -66,7 +66,7 @@ export class PublicarPropiedadComponent implements OnInit {
       const propertyData: Property = {
         ...this.property,
         direction: this.selectedCity, // Asignar la ciudad seleccionada como dirección
-        features: this.property.features, // Asegurarse de que las características adicionales estén enviadas
+        additioFeatures: this.property.additioFeatures, // Asegurarse de que las características adicionales estén enviadas
       };
 
       // Realizar la llamada al servicio

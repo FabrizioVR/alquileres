@@ -2,7 +2,7 @@
   <h1>Publicar Propiedad</h1>
   <form (ngSubmit)="onSubmit($event)">
     <label for="nTitle">Título de la propiedad:</label>
-    <input type="text" id="nTitle" [(ngModel)]="property.nTitle" name="nTitle" required>
+    <input type="text" id="nTitle" [(ngModel)]="property.title" name="nTitle" required>
 
     <label for="direction">Dirección:</label>
     <input type="text" id="direction" [(ngModel)]="property.direction" name="direction" required>
@@ -29,7 +29,7 @@
 
     <!-- Campo de texto para características adicionales -->
     <label for="features">Características adicionales:</label>
-    <textarea id="features" [(ngModel)]="property.features" name="features" ></textarea>
+    <textarea id="features" [(ngModel)]="property.additioFeatures" name="features" ></textarea>
 
     <!-- Campo para seleccionar el número de habitaciones -->
     <label for="rooms">Número de habitaciones:</label>
@@ -41,7 +41,7 @@
     <input type="number" id="capacity" [(ngModel)]="property.capacity" name="capacity" required min="1">
 
     <label for="price">Precio (S/.):</label>
-<input type="number" id="price" [(ngModel)]="property.cost" name="price" required min="0" step="0.01">
+<input type="number" id="price" [(ngModel)]="property.price" name="price" required min="0" step="0.01">
 
     <label for="images">Imágenes:</label>
     <input type="file" id="images" (change)="onFileSelected($event)" multiple accept="image/*" required>
