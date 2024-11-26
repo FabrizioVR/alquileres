@@ -1,8 +1,8 @@
 export interface Rent {
-  rentId: number;
+  rentId?: number;
   userId: number;
   propertyId: number;
-  cost: number;
+  proofImage: string;
   startDate: string;
   endDate: string;
 }
