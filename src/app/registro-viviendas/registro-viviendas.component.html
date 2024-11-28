@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Propiedades Publicadas:</h2>
 
+  <!-- Mensaje cuando no hay propiedades -->
   <div *ngIf="propiedades.length === 0" class="message">
     Aún no tienes propiedades registradas.
   </div>
@@ -20,15 +21,23 @@
             <p>Estado: <strong>{{ propiedad.estado }}</strong></p>
           </div>
         </div>
+
         <div class="propiedad-actions">
-          <button (click)="editarDetalles(propiedad.id)">Editar Detalles</button>
-          <button *ngIf="propiedad.estado === 'Reservada'" (click)="confirmarAlquiler(propiedad.id)">
+          <!-- Botón para editar los detalles -->
+          <button (click)="editarDetalles(propiedad.propertyId)">Editar Detalles</button>
+
+          <!-- Botón de Confirmar Alquiler, visible solo si la propiedad está en estado "Reservada" -->
+          <button *ngIf="propiedad.estado === 'Reservada'" (click)="confirmarAlquiler(propiedad.propertyId)">
             Confirmar Alquiler
           </button>
-          <button *ngIf="propiedad.estado === 'Reservada'" (click)="anularReservacion(propiedad.id)">
+
+          <!-- Botón de Anular Reservación, visible solo si la propiedad está en estado "Reservada" -->
+          <button *ngIf="propiedad.estado === 'Reservada'" (click)="anularReservacion(propiedad.propertyId)">
             Anular Reservación
           </button>
-          <button *ngIf="propiedad.estado === 'Alquilada'" (click)="finalizarAlquiler(propiedad.id)">
+
+          <!-- Botón de Finalizar Alquiler, visible solo si la propiedad está en estado "Alquilada" -->
+          <button *ngIf="propiedad.estado === 'Alquilada'" (click)="finalizarAlquiler(propiedad.propertyId)">
             Finalizar Alquiler
           </button>
         </div>
@@ -44,5 +53,4 @@
   <div class="go-back">
     <button type="button" (click)="irAPaginaMain()" class="btn-regresar">Regresar</button>
   </div>
-  
 </div>

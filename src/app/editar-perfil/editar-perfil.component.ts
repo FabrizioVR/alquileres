@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/userService/user.service';
 import { User } from '../services/userService/user.model';
+import { HttpClientModule } from '@angular/common/http'; // Asegúrate de importar HttpClientModule si es standalone
 
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,
-  imports: [NgIf, CommonModule, FormsModule],
+  imports: [NgIf, CommonModule, FormsModule, HttpClientModule], // Incluye HttpClientModule si es standalone
   templateUrl: './editar-perfil.component.html',
   styleUrls: ['./editar-perfil.component.css'],
 })
@@ -30,9 +31,20 @@ export class EditarPerfilComponent implements OnInit {
     const storedUser = localStorage.getItem('currentUser');
 
     if (storedUser) {
-      this.usuario = JSON.parse(storedUser);
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        
+        // Verificación adicional para asegurar que los datos son correctos
+        if (parsedUser && parsedUser.name && parsedUser.userName) {
+          this.usuario = parsedUser; // Asignación segura
+        } else {
+          this.errorMessage = 'El usuario no tiene datos válidos.';
+        }
+      } catch (e) {
+        this.errorMessage = 'Error al parsear los datos del usuario.';
+      }
     } else {
-      this.errorMessage = 'No hay un usuario almacenado. Debe iniciar Sesión';
+      this.errorMessage = 'No hay un usuario almacenado. Debe iniciar sesión.';
     }
   }
 
@@ -45,11 +57,11 @@ export class EditarPerfilComponent implements OnInit {
 
     if (storedUser) {
       try {
-        const usuario = JSON.parse(storedUser);
+        const parsedUser = JSON.parse(storedUser);
 
         // Verificar si el usuario tiene un ID válido
-        if (usuario && usuario.userId) {
-          this.userService.update(usuario.userId, this.usuario).subscribe({
+        if (parsedUser && parsedUser.userId) {
+          this.userService.update(parsedUser.userId, this.usuario).subscribe({
             next: (updatedUser) => {
               alert('Perfil actualizado exitosamente');
               // Actualizar el usuario almacenado en localStorage
@@ -58,9 +70,8 @@ export class EditarPerfilComponent implements OnInit {
             },
             error: (err) => {
               console.error('Error al actualizar el perfil:', err);
-              alert(
-                'Error al actualizar el perfil, por favor intenta nuevamente'
-              );
+              this.errorMessage = `Error al actualizar el perfil: ${err.message || err}`;
+              alert('Error al actualizar el perfil, por favor intenta nuevamente');
             },
           });
         } else {

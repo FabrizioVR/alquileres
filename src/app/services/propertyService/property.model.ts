@@ -1,6 +1,7 @@
 export interface Property {
   propertyId?: number;
   userId?: number;
+  phone?: String;
   title: string;
   description: string;
   city: string;

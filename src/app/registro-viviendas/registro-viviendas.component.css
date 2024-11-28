@@ -87,6 +87,15 @@ h2 {
   color: white;
 }
 
+.propiedad-actions button:nth-child(4) { /* Botón de editar detalles */
+  background-color: #ffc107;
+  color: white;
+}
+
+.propiedad-actions button:nth-child(4):hover {
+  background-color: #e0a800;
+}
+
 .propiedad-actions button:hover {
   opacity: 0.9;
 }

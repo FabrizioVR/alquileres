@@ -2,24 +2,35 @@
   <h1>Alquilar Propiedad</h1>
   <p>ID: {{ vivienda.propertyId }}</p>
   <h2>{{ vivienda.title }}</h2>
-  <p>Dirección: {{ vivienda.direction }}</p>
-  <p>Ciudad: {{ vivienda.city }}</p>
+  <p>Dirección: {{ vivienda.city }}</p>
+  <p>Ciudad: {{ vivienda.direction }}</p>
   <p>Disponibilidad: {{ vivienda.availability }}</p>
-  <p>Descripcion: {{ vivienda.description }}</p>
+  <p>Descripción: {{ vivienda.description }}</p>
   <p>Tipo: {{ vivienda.type }}</p>
   <p>Características Adicionales: {{ vivienda.additioFeatures }}</p>
-  <p>Numero de Habitaciones: {{ vivienda.nRooms }}</p>
+  <p>Número de Habitaciones: {{ vivienda.nRooms }}</p>
   <p>Capacidad: {{ vivienda.capacity }} personas</p>
   <p>Precio: {{ vivienda.price }}</p>
+  <p><strong>Teléfono del propietario:</strong> {{ vivienda.phone || 'No disponible' }}</p>
 
-  <div>
-    <label for="comprobante-pago">Subir comprobante de pago:</label>
-    <input type="file" id="comprobante-pago" (change)="onFileSelected($event)" accept="image/*">
-    <p *ngIf="comprobanteNombre">Archivo seleccionado: {{ comprobanteNombre }}</p>
-  </div>
+<!-- Formulario para seleccionar fechas de inicio y fin -->
+<div class="fechas-container">
+  <label for="startDate">Fecha de Llegada:</label>
+  <input type="date" id="startDate" [(ngModel)]="startDate">
 
-  <div class="botones-container">
-    <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
-    <button (click)="realizarAlquiler()" class="realizar-button">Realizar Alquiler</button>
-  </div>
+  <label for="endDate">Fecha de Salida:</label>
+  <input type="date" id="endDate" [(ngModel)]="endDate">
+</div>
+
+<!-- Subir comprobante de pago -->
+<div>
+  <label for="comprobante-pago">Subir comprobante de pago:</label>
+  <input type="file" id="comprobante-pago" (change)="onFileSelected($event)" accept="image/*">
+  <p *ngIf="comprobanteNombre">Archivo seleccionado: {{ comprobanteNombre }}</p>
+</div>
+
+<div class="botones-container">
+  <button (click)="regresar()" class="regresar-button">Regresar a Listado de Viviendas</button>
+  <button (click)="realizarAlquiler()" class="realizar-button">Realizar Alquiler</button>
+</div>
 </div>

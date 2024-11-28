@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Property } from '../services/propertyService/property.model';
 import { PropertyService } from '../services/propertyService/property.service';
 import { UserService } from '../services/userService/user.service';
-import { User } from '../services/userService/user.model';
 
 @Component({
   selector: 'app-publicar-propiedad',
@@ -28,7 +27,7 @@ export class PublicarPropiedadComponent implements OnInit {
     additioFeatures: '', // Nueva propiedad para características adicionales
     price: 0,
     city: '',
-    nRooms: 0,
+    nRooms: 1,
   };
 
   images: File[] = []; // Almacena las imágenes seleccionadas
@@ -67,6 +66,8 @@ export class PublicarPropiedadComponent implements OnInit {
         ...this.property,
         direction: this.selectedCity, // Asignar la ciudad seleccionada como dirección
         additioFeatures: this.property.additioFeatures, // Asegurarse de que las características adicionales estén enviadas
+        nRooms: this.selectedRooms,
+        
       };
 
       // Realizar la llamada al servicio
@@ -80,7 +81,8 @@ export class PublicarPropiedadComponent implements OnInit {
             this.uploadImages(data.propertyId);
           }
 
-          this.router.navigate(['/pagina-main']);
+          // Redirigir a registro-viviendas
+          this.router.navigate(['/registro-viviendas']);
         },
         (error: any) => {
           console.error('Error al publicar la propiedad:', error);
