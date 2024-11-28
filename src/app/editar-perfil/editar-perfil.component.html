@@ -2,21 +2,20 @@
     <h4>Editar Perfil</h4>
     <form (ngSubmit)="guardarCambios()">
         <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" [(ngModel)]="usuario.name" name="nombre" required>
+            <label for="nombre user">Nombre de Usuario:</label>
+            <input type="text" id="nombre user" [(ngModel)]="usuario.userName" name="nombre user">
         </div>
         <div>
-            <label for="correo">Teléfono:</label>
-            <input type="email" id="correo" [(ngModel)]="usuario.phone" name="correo" required>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" [(ngModel)]="usuario.phone" name="telefono">
         </div>
         <div>
             <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" [(ngModel)]="usuario.password" name="contrasena" required>
+            <input type="password" id="contrasena" [(ngModel)]="usuario.password" name="contrasena">
         </div>
         <button type="submit">Guardar Cambios</button>
-
         <div class="boton-regresar-container">
-            <button (click)="volver()" class="regresar-button">Regresar</button>
+            <button type="button" (click)="volver()" class="regresar-button">Regresar</button>
         </div>
     </form>
 </div>
