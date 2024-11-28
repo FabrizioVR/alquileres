@@ -6,38 +6,43 @@
     Aún no tienes propiedades registradas.
   </div>
 
+  <!-- Lista de propiedades si existen -->
   <div *ngIf="propiedades.length > 0">
     <div class="propiedad-list">
-      <!-- Lista de propiedades -->
+      <!-- Recorremos las propiedades visibles -->
       <div *ngFor="let propiedad of propiedadesVisibles" class="propiedad-card">
+        <!-- Información de la propiedad -->
         <div class="propiedad-info">
           <div class="propiedad-img">
-            <img [src]="propiedad.imagen" alt="Imagen de la Propiedad" />
+            <img 
+              [src]="propiedad.image || 'assets/default-image.jpg'" 
+              alt="Imagen de {{ propiedad.title }}" />
           </div>
           <div class="propiedad-details">
-            <h3>{{ propiedad.titulo }}</h3>
-            <p>{{ propiedad.ubicacion }}</p>
-            <p>S/. {{ propiedad.precio }}</p>
-            <p>Estado: <strong>{{ propiedad.estado }}</strong></p>
+            <h3>{{ propiedad.title }}</h3>
+            <p><strong>Ciudad:</strong>{{ propiedad.direction }}</p>
+            <p><strong>Precio:</strong> S/. {{ propiedad.price }}</p>
+            <p><strong>Estado:</strong> {{ propiedad.availability }}</p>
           </div>
         </div>
 
+        <!-- Acciones para cada propiedad -->
         <div class="propiedad-actions">
           <!-- Botón para editar los detalles -->
           <button (click)="editarDetalles(propiedad.propertyId)">Editar Detalles</button>
 
-          <!-- Botón de Confirmar Alquiler, visible solo si la propiedad está en estado "Reservada" -->
-          <button *ngIf="propiedad.estado === 'Reservada'" (click)="confirmarAlquiler(propiedad.propertyId)">
+          <!-- Botón de Confirmar Alquiler -->
+          <button *ngIf="propiedad.availability === 'Reservada'" (click)="confirmarAlquiler(propiedad.propertyId)">
             Confirmar Alquiler
           </button>
 
-          <!-- Botón de Anular Reservación, visible solo si la propiedad está en estado "Reservada" -->
-          <button *ngIf="propiedad.estado === 'Reservada'" (click)="anularReservacion(propiedad.propertyId)">
+          <!-- Botón de Anular Reservación -->
+          <button *ngIf="propiedad.availability === 'Reservada'" (click)="anularReservacion(propiedad.propertyId)">
             Anular Reservación
           </button>
 
-          <!-- Botón de Finalizar Alquiler, visible solo si la propiedad está en estado "Alquilada" -->
-          <button *ngIf="propiedad.estado === 'Alquilada'" (click)="finalizarAlquiler(propiedad.propertyId)">
+          <!-- Botón de Finalizar Alquiler -->
+          <button *ngIf="propiedad.availability === 'Alquilada'" (click)="finalizarAlquiler(propiedad.propertyId)">
             Finalizar Alquiler
           </button>
         </div>
@@ -50,7 +55,8 @@
     </div>
   </div>
 
+  <!-- Botón para regresar a la página principal -->
   <div class="go-back">
-    <button type="button" (click)="irAPaginaMain()" class="btn-regresar">Regresar</button>
+    <button (click)="irAPaginaMain()" class="btn-regresar">Regresar</button>
   </div>
 </div>

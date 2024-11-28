@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RentService } from '../services/rentService/rent.service'; // Importamos el servicio RentService
-import { Observable } from 'rxjs';
+import { PropertyService } from '../services/propertyService/property.service';
 
 @Component({
   selector: 'app-registro-viviendas',
@@ -18,40 +18,52 @@ export class RegistroViviendasComponent implements OnInit {
   mensajeSinPropiedades = "Aún no tienes propiedades registradas"; // Mensaje cuando no hay propiedades
 
   constructor(
-    private rentService: RentService,  // Inyectamos el RentService
+    private propertyService: PropertyService,  // Inyectamos el RentService
+    private rentService: RentService,
     private router: Router,
     private cdr: ChangeDetectorRef // Inyectamos ChangeDetectorRef para forzar la detección de cambios
   ) {}
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId'); // Obtener el userId desde el localStorage
-    
-    if (!userId || userId === 'undefined') {
-      // Redirigir al usuario a la página de login si no está conectado
-      this.router.navigate(['/login']);
-      return;
-    }
+    const storedUser = localStorage.getItem('currentUser');
 
-    this.rentService.getByUserId(Number(userId)).subscribe({
-      next: (data: any[]) => {
-        this.propiedades = data;
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        console.log(parsedUser, "User");
 
-        console.log('Datos recibidos:', data);
-
-        if (this.propiedades.length > 0) {
-          this.propiedadesVisibles = this.propiedades.slice(0, this.maxPropiedadesPorPagina);
-          console.log('Propiedades visibles:', this.propiedadesVisibles); // Verifica las propiedades visibles
+        // Verificación adicional para asegurar que los datos son correctos
+        if (parsedUser && parsedUser.userId) {
+          this.propertyService.getByUserId(parsedUser.userId).subscribe({
+            next: (data: any[]) => {
+              this.propiedades = data;
+      
+              console.log('Datos recibidos:', data);
+      
+              if (this.propiedades.length > 0) {
+                this.propiedadesVisibles = this.propiedades.slice(0, this.maxPropiedadesPorPagina);
+                console.log('Propiedades visibles:', this.propiedadesVisibles); // Verifica las propiedades visibles
+              } else {
+                this.propiedadesVisibles = [];
+              }
+      
+              // Forzar la detección de cambios si es necesario
+              this.cdr.detectChanges();
+            },
+            error: (err) => {
+              console.error('Error al obtener propiedades:', err);
+            }
+          });
         } else {
-          this.propiedadesVisibles = [];
+          this.router.navigate(['/login']);
+          return;
         }
-
-        // Forzar la detección de cambios si es necesario
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error('Error al obtener propiedades:', err);
+      } catch (e) {
+        alert("Error al parsear los datos del usuario.");
       }
-    });
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   // Método para cargar más propiedades (paginación)

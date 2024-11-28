@@ -9,6 +9,7 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { RegistrarComponent } from './registrar/registrar.component';
 import { HistorialComponent } from './historial/historial.component';
 import { RegistroViviendasComponent } from './registro-viviendas/registro-viviendas.component';
+import { EditarDetallesComponent } from './editar-detalles/editar-detalles.component';
 
 export const routes: Routes = [
   { path: '', component: PaginaMainComponent }, // Cambiado a PaginaMainComponent
@@ -21,4 +22,5 @@ export const routes: Routes = [
   { path: 'detalle/:id', component: DetalleViviendaComponent },
   { path: 'historial', component: HistorialComponent },
   { path: 'registro-viviendas', component: RegistroViviendasComponent },
+  { path: 'editar-detalles/:id', component: EditarDetallesComponent },
 ];

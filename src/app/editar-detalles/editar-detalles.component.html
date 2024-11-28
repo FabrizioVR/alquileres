@@ -4,13 +4,13 @@
       <label for="nTitle">Título de la propiedad:</label>
       <input type="text" id="nTitle" [(ngModel)]="property.title" name="nTitle" required>
   
-      <label for="direction">Dirección:</label>
-      <input type="text" id="direction" [(ngModel)]="property.direction" name="direction" required>
-  
-      <label for="city">Ciudad:</label>
-      <select id="city" [(ngModel)]="selectedCity" name="city" required>
+      <label for="direction">Ciudad:</label>
+      <select id="direction" [(ngModel)]="selectedCity" name="direction" required>
         <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
       </select>
+  
+      <label for="city">Direccion:</label>
+      <input type="text" id="city" [(ngModel)]="property.city" name="city" required>
   
       <label for="availability">Disponibilidad:</label>
       <select id="availability" [(ngModel)]="property.availability" name="availability">

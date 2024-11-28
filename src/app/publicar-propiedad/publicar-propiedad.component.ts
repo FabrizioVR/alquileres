@@ -48,7 +48,23 @@ export class PublicarPropiedadComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loggedUserId = parseInt(localStorage.getItem('userId') || '0', 10);
+    // Intentar obtener el usuario del localStorage
+    const storedUser = localStorage.getItem('currentUser');
+
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        
+        // Verificación adicional para asegurar que los datos son correctos
+        if (parsedUser && parsedUser.name && parsedUser.userName) {
+          this.loggedUserId = parsedUser.userId; // Asignación segura
+        } else {
+          this.router.navigate(['/login']);
+        }
+      } catch (e) {
+        alert("Error al parsear los datos del usuario.");
+      }
+    } 
   }
 
   // Capturar los archivos seleccionados por el usuario
@@ -67,7 +83,7 @@ export class PublicarPropiedadComponent implements OnInit {
         direction: this.selectedCity, // Asignar la ciudad seleccionada como dirección
         additioFeatures: this.property.additioFeatures, // Asegurarse de que las características adicionales estén enviadas
         nRooms: this.selectedRooms,
-        
+        userId: this.loggedUserId,
       };
 
       // Realizar la llamada al servicio

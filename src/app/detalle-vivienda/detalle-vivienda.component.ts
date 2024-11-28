@@ -6,12 +6,12 @@ import { RentService } from '../services/rentService/rent.service';
 import { UserService } from '../services/userService/user.service';
 import { Rent } from '../services/rentService/rent.model';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  // Importa CommonModule
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 
 @Component({
   selector: 'app-detalle-vivienda',
   standalone: true,
-  imports: [FormsModule, CommonModule],  // Agrega CommonModule aquí
+  imports: [FormsModule, CommonModule], // Agrega CommonModule aquí
   templateUrl: './detalle-vivienda.component.html',
   styleUrls: ['./detalle-vivienda.component.css'],
 })
@@ -75,27 +75,43 @@ export class DetalleViviendaComponent implements OnInit {
     alert('Su vivienda estará en estado de Reservado mientras se espera la respuesta del propietario');
 
     const storedUser = localStorage.getItem('currentUser');
-    
+
     if (storedUser) {
       let user = JSON.parse(storedUser);
 
       // Crear objeto de renta con los datos de alquiler
-      this.rentService.save({
-        userId: user.userId ? user.userId : 1,
-        propertyId: this.viviendaId,
-        proofImage: this.comprobanteNombre, // Usamos el nombre del archivo del comprobante
-        startDate: this.startDate?.toISOString() || '',
-        endDate: this.endDate?.toISOString() || '',
-      }).subscribe(
-        (data) => {
-          this.renta = data;
-        },
-        (error) => {
-          console.error('Error al registrar la renta:', error);
-          this.errorMessage = 'Error al procesar la renta.';
-        }
-      );
+      this.rentService
+        .save({
+          userId: user.userId ? user.userId : 1,
+          propertyId: this.viviendaId,
+          proofImage: this.comprobanteNombre, // Usamos el nombre del archivo del comprobante
+          startDate: this.startDate?.toISOString() || '',
+          endDate: this.endDate?.toISOString() || '',
+        })
+        .subscribe(
+          (data) => {
+            this.renta = data;
+            // Cambiar estado de la propiedad a "Reservada"
+            this.cambiarEstadoPropiedad('Reservada');
+          },
+          (error) => {
+            console.error('Error al registrar la renta:', error);
+            this.errorMessage = 'Error al procesar la renta.';
+          }
+        );
     }
+  }
+
+  cambiarEstadoPropiedad(nuevoEstado: string): void {
+    this.propertyService.updateState(this.viviendaId, nuevoEstado).subscribe(
+      (response) => {
+        console.log(`Estado de la propiedad actualizado a ${nuevoEstado}:`, response);
+        this.vivienda.availability = nuevoEstado; // Actualiza el estado localmente
+      },
+      (error) => {
+        console.error('Error al actualizar el estado de la propiedad:', error);
+      }
+    );
   }
 
   regresar(): void {
